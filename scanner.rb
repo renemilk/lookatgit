@@ -41,7 +41,7 @@ class Scanner
    # scan the git logs 
    def log_scan()
        commit = nil
-       cmd = "git log --numstat #{@which}"
+       cmd = "git log --format='commit %H\nAuthor: %aN <%aE>\nDate: %ad\n\n%s\n\n%b' --numstat #{@which}"
        puts cmd if @@options.verbose
        Open3.popen3(cmd) do |stdin,stdout,stderr|
            stdout.each_line do |line|
